@@ -1,5 +1,10 @@
 #include "apue.h"
 
+void sig_int(int sig_num)
+{
+	printf("signum: %d\n", sig_num);
+}
+
 int main()
 {
 	char buf[MAXLINE];
@@ -8,6 +13,8 @@ int main()
 
 	printf("%% ");
 //	puts("%% ");	//和printf等效，但是会自动加上换行符
+	if(signal(SIGINT, sig_int) == SIG_ERR)
+		err_sys("signal error");
 	while(fgets(buf, MAXLINE, stdin) != NULL){
 		if(buf[strlen(buf) -1] == '\n')
 			buf[strlen(buf) -1] = 0;

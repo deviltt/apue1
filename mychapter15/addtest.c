@@ -30,7 +30,7 @@ int main(void)
 				err_sys("write error");
 			if((n = read(fd2[0], buf, MAXLINE)) < 0)
 				err_sys("read error");
-			if(n = 0){
+			if(n == 0){
 				err_msg("child close pipe");
 				break;
 			}
@@ -55,7 +55,7 @@ int main(void)
 				err_sys("dup2 error");
 			close(fd2[1]);
 		}
-		if(execl("./add", "add", (char *)0) < 0)
+		if(execlp("./add", "add", (char *)0) < 0)
 			err_sys("execlp error");
 	}
 	exit(0);
